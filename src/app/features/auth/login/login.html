@@ -1,0 +1,33 @@
+<div class="container mt-5">
+
+    <div class="card p-4 shadow">
+
+        <h3>Login</h3>
+
+        <form [formGroup]="loginForm">
+
+            <div class="mb-3">
+
+                <label>Username</label>
+
+                <input class="form-control" formControlName="username">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label>Password</label>
+
+                <input type="password" class="form-control" formControlName="password">
+
+            </div>
+
+            <button class="btn btn-primary" (click)="login()">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,109 @@
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h3>Add Employee</h3>
+
+    </div>
+
+    <div class="card-body">
+
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <label>First Name</label>
+
+                    <input class="form-control" formControlName="firstName">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Last Name</label>
+
+                    <input class="form-control" formControlName="lastName">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Email</label>
+
+                    <input class="form-control" formControlName="email">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Phone</label>
+
+                    <input class="form-control" formControlName="phone">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Department</label>
+
+                    <input class="form-control" formControlName="department">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Designation</label>
+
+                    <input class="form-control" formControlName="designation">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Salary</label>
+
+                    <input type="number" class="form-control" formControlName="salary">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Joining Date</label>
+
+                    <input type="date" class="form-control" formControlName="joiningDate">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label>Status</label>
+
+                    <select class="form-select" formControlName="status">
+
+                        <option>
+                            Active
+                        </option>
+
+                        <option>
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary">
+
+                Save Employee
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

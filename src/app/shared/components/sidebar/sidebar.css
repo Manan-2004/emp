@@ -1,0 +1,81 @@
+.sidebar{
+    width:260px;
+    min-height:100vh;
+    background:#1e293b;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    padding:20px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:30px;
+}
+
+.brand i{
+    font-size:28px;
+}
+
+.user-card{
+    background:#334155;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#3b82f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.user-card h5{
+    margin-top:15px;
+}
+
+.user-card p{
+    margin:0;
+    color:#cbd5e1;
+}
+
+.menu{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.menu li{
+    margin-bottom:10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    background:#334155;
+}
+
+.menu a.active{
+    background:#3b82f6;
+}

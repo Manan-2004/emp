@@ -1,0 +1,30 @@
+<div class="navbar-custom">
+
+    <div>
+
+        <h4>
+            Employee Management System
+        </h4>
+
+    </div>
+
+    <div class="right-section">
+
+        <span>
+
+            Welcome,
+            {{user()?.name}}
+
+        </span>
+
+        <button
+            class="btn btn-danger"
+            (click)="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</div>

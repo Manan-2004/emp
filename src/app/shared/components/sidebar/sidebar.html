@@ -1,0 +1,121 @@
+<div class="sidebar">
+
+    <div class="brand">
+
+        <i class="bi bi-building"></i>
+
+        <span>EMS</span>
+
+    </div>
+
+    <div class="user-card">
+
+        <div class="avatar">
+
+            {{user()?.name?.charAt(0)}}
+
+        </div>
+
+        <h5>{{user()?.name}}</h5>
+
+        <p>{{user()?.role}}</p>
+
+    </div>
+
+    <ul class="menu">
+
+        @if(user()?.role==='admin'){
+
+        <li>
+
+            <a
+                routerLink="/admin/dashboard"
+                routerLinkActive="active">
+
+                <i class="bi bi-speedometer2"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                routerLink="/admin/employess"
+                routerLinkActive="active">
+
+                <i class="bi bi-people"></i>
+
+                Employees
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                routerLink="/admin/profile"
+                routerLinkActive="active">
+
+                <i class="bi bi-person-circle"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        }
+
+        @if(user()?.role==='user'){
+
+        <li>
+
+            <a
+                routerLink="/user/dashboard"
+                routerLinkActive="active">
+
+                <i class="bi bi-speedometer2"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                routerLink="/user/employees"
+                routerLinkActive="active">
+
+                <i class="bi bi-people"></i>
+
+                Employees
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                routerLink="/user/profile"
+                routerLinkActive="active">
+
+                <i class="bi bi-person-circle"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        }
+
+    </ul>
+
+</div>
