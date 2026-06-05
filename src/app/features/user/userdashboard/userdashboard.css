@@ -1,0 +1,33 @@
+.dashboard{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.welcome-card{
+  background:#2563eb;
+  color:white;
+  padding:24px;
+  border-radius:16px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.stat-card{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.profile-card{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+}

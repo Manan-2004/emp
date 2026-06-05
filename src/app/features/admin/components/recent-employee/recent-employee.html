@@ -1,0 +1,96 @@
+<!-- Recent Employees -->
+
+<div class="dashboard-section">
+
+    <div class="section-header">
+
+        <h3>
+            Recent Employees
+        </h3>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Department</th>
+
+                    <th>Designation</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+                @if(loading()){
+
+                <div class="loading-wrapper">
+
+                    <div class="spinner-border">
+
+                    </div>
+
+                </div>
+
+                }
+                @else {
+                @if (recentEmployees().length > 0) {
+                @for(emp of recentEmployees(); track emp.id){
+
+                <tr>
+
+                    <td>{{emp.id}}</td>
+
+                    <td>{{emp.firstName}} {{emp.lastName}}</td>
+
+                    <td>{{emp.email}}</td>
+
+                    <td>{{emp.department}}</td>
+
+                    <td>{{emp.designation}}</td>
+
+                    <td>
+                        <span class="badge" [class.bg-success]="emp.status === 'Active'"
+                            [class.bg-danger]="emp.status === 'Inactive'">
+                            {{ emp.status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-sm btn-info me-2" (click)="viewemployee(emp.id)">
+                            View
+                        </button>
+                    </td>
+
+                </tr>
+                }
+                }
+                @else {
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-4">
+                        Recent Employees is Not Found
+                    </td>
+                </tr>
+                }
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

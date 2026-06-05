@@ -6,11 +6,7 @@ export const USER_ROUTES: Routes = [
         loadComponent: () => import('./userdashboard/userdashboard').then((u) => u.Userdashboard)
     },
     {
-        path: 'employees',
-        loadComponent: () => import('./employee-list/employee-list').then((u) => u.EmployeeList)
-    },
-    {
-        path: 'employees/:id',
+        path: 'employeesdetail',
         loadComponent: () => import('./employee-detail/employee-detail').then(a => a.EmployeeDetail)
     },
     {

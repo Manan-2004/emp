@@ -26,6 +26,14 @@ export const ADMIN_ROUTES: Routes = [
         loadComponent: () => import('./profile/profile').then(a => a.Profile)
     },
     {
+        path:'employees/create-account/:id',
+        loadComponent:()=>import("./create-account/create-account").then(a=>a.CreateAccount)
+    },
+    {
+         path:'users',
+         loadComponent:()=>import("./users/users").then(a=>a.Users)
+    },
+    {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'

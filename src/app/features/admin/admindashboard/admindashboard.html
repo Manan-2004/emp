@@ -1,1 +1,121 @@
-<p>admindashboard works!</p>
+<div class="dashboard-container">
+
+    <div class="welcome-card">
+
+        <h2>
+            Welcome Back Admin 👋
+        </h2>
+
+        <p>
+            Manage employees, monitor activity and track organization growth.
+        </p>
+
+    </div>
+
+    @if(loading()){
+
+    <div class="loading-box">
+
+        <div
+            class="spinner-border"
+            role="status">
+        </div>
+
+        <p>
+            Loading Dashboard...
+        </p>
+
+    </div>
+
+    }
+
+    @else {
+
+    <!-- Stats Cards -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>Total Employees</span>
+
+            <h2>
+                {{totalEmployees()}}
+            </h2>
+
+        </div>
+
+        <div class="stat-card active-card">
+
+            <span>Active Employees</span>
+
+            <h2>
+                {{activeEmployees()}}
+            </h2>
+
+        </div>
+
+        <div class="stat-card inactive-card">
+
+            <span>Inactive Employees</span>
+
+            <h2>
+                {{inactiveEmployees()}}
+            </h2>
+
+        </div>
+
+        <div class="stat-card department-card">
+
+            <span>Departments</span>
+
+            <h2>
+                {{totalDepartments()}}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- Recent employee -->
+    <app-recent-employee></app-recent-employee>
+
+    <!-- Recent Activity -->
+
+    <div class="dashboard-section">
+
+        <div class="section-header">
+
+            <h3>
+                Recent Activity
+            </h3>
+
+        </div>
+
+        <div class="activity-list">
+
+            <div class="activity-item">
+
+                Employee records updated
+
+            </div>
+
+            <div class="activity-item">
+
+                New employee joined
+
+            </div>
+
+            <div class="activity-item">
+
+                Profile information updated
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+
+</div>

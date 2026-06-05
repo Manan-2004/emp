@@ -1,0 +1,47 @@
+.details-page{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.details-header{
+  background:#2563eb;
+  color:white;
+  padding:24px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.avatar{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:white;
+  color:#2563eb;
+  font-size:30px;
+  font-weight:700;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.details-card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.info-row{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+}
+
+.loading-box{
+  text-align:center;
+  padding:50px;
+}

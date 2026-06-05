@@ -18,5 +18,6 @@ export interface Employee {
   joiningDate:string;
 
   status:'Active' | 'Inactive';
-
+  
+  accountCreated: boolean;
 }

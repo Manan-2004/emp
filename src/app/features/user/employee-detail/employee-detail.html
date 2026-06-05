@@ -1,1 +1,149 @@
-<p>employee-detail works!</p>
+@if(loading()){
+
+<div class="loading-box">
+
+    <div class="spinner-border">
+    </div>
+
+</div>
+
+}
+@else if(employee()){
+
+<div class="details-page">
+
+    <!-- Header -->
+
+    <div class="details-header">
+
+        <div class="avatar">
+
+            {{employee()?.firstName?.charAt(0)}}
+
+        </div>
+
+        <div>
+
+            <h2>
+
+                {{employee()?.firstName}}
+                {{employee()?.lastName}}
+
+            </h2>
+
+            <p>
+
+                Employee ID :
+                {{employee()?.id}}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Personal -->
+
+    <div class="details-card">
+
+        <h4>
+
+            Personal Information
+
+        </h4>
+
+        <div class="info-row">
+
+            <span>Name</span>
+
+            <strong>
+
+                {{employee()?.firstName}}
+                {{employee()?.lastName}}
+
+            </strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Email</span>
+
+            <strong>
+
+                {{employee()?.email}}
+
+            </strong>
+
+        </div>
+
+    </div>
+
+    <!-- Professional -->
+
+    <div class="details-card">
+
+        <h4>
+
+            Professional Information
+
+        </h4>
+
+        <div class="info-row">
+
+            <span>Department</span>
+
+            <strong>
+
+                {{employee()?.department}}
+
+            </strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Designation</span>
+
+            <strong>
+
+                {{employee()?.designation}}
+
+            </strong>
+
+        </div>
+
+        <div class="info-row">
+
+            <span>Status</span>
+
+            <strong>
+
+                {{employee()?.status}}
+
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div class="details-card">
+    <div class="d-flex gap-2 flex-wrap">
+
+        <button
+            class="btn btn-outline-primary"
+            routerLink="/user/profile">
+
+            <i class="bi bi-person-circle me-2"></i>
+              View Profile
+
+        </button>
+
+
+    </div>
+
+</div>
+
+</div>
+
+}

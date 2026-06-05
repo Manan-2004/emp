@@ -27,29 +27,73 @@ export class EmployeeEdit {
 
   private router = inject(Router);
 
-  private messageservice=inject(MessagesServices)
+  private messageservice = inject(MessagesServices)
 
   private employeeService = inject(EmployeeService);
 
   employeeForm = this.fb.group({
 
-    firstName: ['', Validators.required],
+    firstName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(/^[A-Za-z ]+$/)
+      ]
+    ],
 
-    lastName: ['', Validators.required],
+    lastName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(/^[A-Za-z ]+$/)
+      ]
+    ],
 
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.email
+      ]
+    ],
 
-    phone: ['', Validators.required],
+    phone: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[0-9]{10}$/)
+      ]
+    ],
 
-    department: ['', Validators.required],
+    department: [
+      '',
+      Validators.required
+    ],
 
-    designation: ['', Validators.required],
+    designation: [
+      '',
+      Validators.required
+    ],
 
-    salary: [0, Validators.required],
+    salary: [
+      0,
+      [
+        Validators.required,
+        Validators.min(1000)
+      ]
+    ],
 
-    joiningDate: ['', Validators.required],
+    joiningDate: [
+      '',
+      Validators.required
+    ],
 
-    status: ['Active', Validators.required]
+    status: [
+      'Active',
+      Validators.required
+    ]
 
   });
 
@@ -83,22 +127,18 @@ export class EmployeeEdit {
       this.messageservice.warning("Please Fill The Form")
       return;
     }
-    
-    this.employeeService.updateEmployee(this.employeeId,this.employeeForm.value as any).
-    subscribe({
-        next:()=>{
-           this.messageservice.success("Employee Updated SuccessFully")
-           this.router.navigate(['/admin/employess'])
+
+    this.employeeService.updateEmployee(this.employeeId, this.employeeForm.value as any).
+      subscribe({
+        next: () => {
+          this.messageservice.success("Employee Updated SuccessFully")
+          this.router.navigate(['/admin/employess'])
         },
-        error:(err)=>{
-           console.log(err)
-           this.messageservice.error("Employees Is Not Update please try again")
+        error: (err) => {
+          console.log(err)
+          this.messageservice.error("Employees Is Not Update please try again")
         }
-    })
+      })
 
   }
-
-
-
-
 }

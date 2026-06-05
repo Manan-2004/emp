@@ -1,108 +1,281 @@
-<div class="card shadow">
+<div class="employee-container">
 
-    <div class="card-header">
+    <div class="card employee-card border-0 shadow-lg">
 
-        <h3>Add Employee</h3>
+        <div class="card-header employee-header">
 
-    </div>
+            <h3 class="mb-0">
+                <i class="bi bi-person-plus-fill me-2"></i>
+                Add Employee
+            </h3>
 
-    <div class="card-body">
+        </div>
 
-        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="card-body p-4">
 
-            <div class="row">
+            <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
 
-                <div class="col-md-6 mb-3">
+                <div class="row">
 
-                    <label>First Name</label>
+                    <!-- First Name -->
+                    <div class="col-md-6 mb-3">
 
-                    <input class="form-control" formControlName="firstName">
+                        <label class="form-label">
+                            First Name
+                        </label>
+
+                        <input type="text" class="form-control" formControlName="firstName"
+                            placeholder="Enter first name">
+
+                        @if(employeeForm.get('firstName')?.touched){
+
+                        @if(employeeForm.get('firstName')?.errors?.['required']){
+                        <small class="text-danger">
+                            First Name is required
+                        </small>
+                        }
+
+                        @if(employeeForm.get('firstName')?.errors?.['minlength']){
+                        <small class="text-danger">
+                            Minimum 2 characters required
+                        </small>
+                        }
+
+                        @if(employeeForm.get('firstName')?.errors?.['pattern']){
+                        <small class="text-danger">
+                            Only alphabets are allowed
+                        </small>
+                        }
+
+                        }
+
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Last Name
+                        </label>
+
+                        <input type="text" class="form-control" formControlName="lastName"
+                            placeholder="Enter last name">
+                        @if(employeeForm.get('lastName')?.touched){
+
+                        @if(employeeForm.get('lastName')?.errors?.['required']){
+                        <small class="text-danger">
+                            Last Name is required
+                        </small>
+                        }
+
+                        @if(employeeForm.get('lastName')?.errors?.['minlength']){
+                        <small class="text-danger">
+                            Minimum 2 characters required
+                        </small>
+                        }
+
+                        @if(employeeForm.get('lastName')?.errors?.['pattern']){
+                        <small class="text-danger">
+                            Only alphabets are allowed
+                        </small>
+                        }
+
+                        }
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Email
+                        </label>
+
+                        <input type="email" class="form-control" formControlName="email"
+                            placeholder="example@email.com">
+
+                        @if(employeeForm.get('email')?.touched &&
+                        employeeForm.get('email')?.invalid){
+
+                        <small class="text-danger">
+                            Enter valid email
+                        </small>
+
+                        }
+
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Phone Number
+                        </label>
+
+                        <input type="text" class="form-control" formControlName="phone" placeholder="9876543210">
+
+                        @if(employeeForm.get('phone')?.touched &&
+                        employeeForm.get('phone')?.invalid){
+
+                        <small class="text-danger">
+                            Enter valid 10 digit phone number
+                        </small>
+
+                        }
+
+                    </div>
+
+                    <!-- Department -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Department
+                        </label>
+
+                        <select class="form-select" formControlName="department">
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <option value="IT">
+                                IT
+                            </option>
+
+                            <option value="HR">
+                                HR
+                            </option>
+
+                            <option value="Finance">
+                                Finance
+                            </option>
+
+                            <option value="Sales">
+                                Sales
+                            </option>
+
+                            <option value="Marketing">
+                                Marketing
+                            </option>
+
+                        </select>
+
+                        @if(employeeForm.get('department')?.touched &&
+                        employeeForm.get('department')?.invalid){
+
+                        <small class="text-danger">
+                            Department is required
+                        </small>
+
+                        }
+
+                    </div>
+
+                    <!-- Designation -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Designation
+                        </label>
+
+                        <input class="form-control" formControlName="designation" placeholder="Software Developer">
+                        @if(employeeForm.get('designation')?.touched &&
+                        employeeForm.get('designation')?.invalid){
+
+                        <small class="text-danger">
+                            designation is required
+                        </small>
+
+                        }
+
+                    </div>
+
+                    <!-- Salary -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Salary
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                ₹
+                            </span>
+
+                            <input type="number" class="form-control" formControlName="salary">
+
+                        </div>
+
+                        @if(employeeForm.get('salary')?.touched &&
+                        employeeForm.get('salary')?.errors?.['required']){
+
+                        <small class="text-danger">
+                            Salary is required
+                        </small>
+
+                        }
+
+                        @if(employeeForm.get('salary')?.touched &&
+                        employeeForm.get('salary')?.errors?.['min']){
+
+                        <small class="text-danger">
+                            Salary must be at least ₹1000
+                        </small>
+
+                        }
+
+                    </div>
+
+                    <!-- Joining Date -->
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Joining Date
+                        </label>
+
+                        <input type="date" class="form-control" formControlName="joiningDate">
+
+                    </div>
+
+                    <!-- Status -->
+                    <div class="col-md-6 mb-4">
+
+                        <label class="form-label">
+                            Status
+                        </label>
+
+                        <select class="form-select" formControlName="status">
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Inactive">
+                                Inactive
+                            </option>
+
+                        </select>
+
+                    </div>
 
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="text-end">
 
-                    <label>Last Name</label>
+                    <button class="btn btn-success px-4" [disabled]="employeeForm.invalid">
 
-                    <input class="form-control" formControlName="lastName">
+                        <i class="bi bi-check-circle-fill me-2"></i>
 
-                </div>
+                        Save Employee
 
-                <div class="col-md-6 mb-3">
-
-                    <label>Email</label>
-
-                    <input class="form-control" formControlName="email">
+                    </button>
 
                 </div>
 
-                <div class="col-md-6 mb-3">
+            </form>
 
-                    <label>Phone</label>
-
-                    <input class="form-control" formControlName="phone">
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label>Department</label>
-
-                    <input class="form-control" formControlName="department">
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label>Designation</label>
-
-                    <input class="form-control" formControlName="designation">
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label>Salary</label>
-
-                    <input type="number" class="form-control" formControlName="salary">
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label>Joining Date</label>
-
-                    <input type="date" class="form-control" formControlName="joiningDate">
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <label>Status</label>
-
-                    <select class="form-select" formControlName="status">
-
-                        <option>
-                            Active
-                        </option>
-
-                        <option>
-                            Inactive
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-            <button class="btn btn-primary">
-
-                Save Employee
-
-            </button>
-
-        </form>
+        </div>
 
     </div>
 

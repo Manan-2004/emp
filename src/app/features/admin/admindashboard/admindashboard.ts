@@ -1,9 +1,62 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { EmployeeService } from '../../../core/services/employee/employee.service';
+import { Employee } from '../../../models/employee.model';
+import { RecentEmployee } from "../components/recent-employee/recent-employee";
 
 @Component({
   selector: 'app-admindashboard',
-  imports: [],
+  imports: [RecentEmployee],
   templateUrl: './admindashboard.html',
   styleUrl: './admindashboard.css',
 })
-export class Admindashboard {}
+export class Admindashboard {
+  private employeeService = inject(EmployeeService);
+  employees = signal<Employee[]>([]);
+  loading = signal(false);
+
+  ngOnInit() {
+    this.loadDashboardData()
+  }
+
+  loadDashboardData() {
+    this.loading.set(true);
+    this.employeeService.getEmployees().subscribe({
+      next: (res) => {
+        this.employees.set(res);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.loading.set(false);
+      }
+    });
+  }
+
+  totalEmployees = computed(() =>
+    this.employees().length
+  );
+
+  activeEmployees = computed(() =>
+    this.employees().filter(
+      emp => emp.status === 'Active'
+    ).length
+  );
+
+  inactiveEmployees = computed(() =>
+    this.employees().filter(
+      emp => emp.status === 'Inactive'
+    ).length
+  );
+  
+   totalDepartments = computed(() =>
+    new Set(
+      this.employees().map(
+        emp => emp.department
+      )
+    ).size
+  );
+
+  recentEmployees = computed(() =>
+    [...this.employees()].reverse().slice(0, 5)
+  );
+
+}

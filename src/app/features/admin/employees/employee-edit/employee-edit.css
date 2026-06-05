@@ -1,0 +1,36 @@
+.employee-card {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.employee-header {
+    background: linear-gradient(
+        135deg,
+        #f59e0b,
+        #f97316
+    );
+    color: white;
+    padding: 18px 24px;
+}
+
+.form-control,
+.form-select {
+    height: 48px;
+    border-radius: 10px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 .2rem rgba(245,158,11,.15);
+}
+
+.btn-warning {
+    border-radius: 10px;
+    font-weight: 600;
+    min-width: 180px;
+    height: 48px;
+}
+
+.text-danger {
+    font-size: 13px;
+}

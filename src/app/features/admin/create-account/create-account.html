@@ -1,0 +1,164 @@
+<div class="container py-4">
+
+    <div class="card account-card border-0 shadow-lg">
+
+        <div class="card-header bg-primary text-white py-3">
+
+            <h4 class="mb-0">
+                <i class="bi bi-person-plus-fill me-2"></i>
+                Create User Account
+            </h4>
+
+        </div>
+
+        <div class="card-body p-4">
+
+            @if(employee()){
+
+            <div class="alert alert-info border-0">
+
+                <strong>Employee :</strong>
+
+                {{employee()?.firstName}}
+                {{employee()?.lastName}}
+
+            </div>
+
+            }
+
+            <form
+                [formGroup]="accountForm"
+                (ngSubmit)="saveAccount()">
+
+                <!-- Username -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        Username
+
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        [class.is-invalid]="f.username.touched && f.username.invalid"
+                        [class.is-valid]="f.username.touched && f.username.valid"
+                        formControlName="username"
+                        placeholder="Enter username">
+
+                    @if(f.username.touched && f.username.invalid){
+
+                    <div class="invalid-feedback d-block">
+
+                        @if(f.username.errors?.['required']){
+                        Username is required.
+                        }
+
+                        @if(f.username.errors?.['minlength']){
+                        Username must be at least 4 characters.
+                        }
+
+                        @if(f.username.errors?.['maxlength']){
+                        Username cannot exceed 20 characters.
+                        }
+
+                        @if(f.username.errors?.['pattern']){
+                        Only letters, numbers, dot(.) and underscore(_) allowed.
+                        }
+
+                    </div>
+
+                    }
+
+                </div>
+
+                <!-- Password -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        Password
+
+                    </label>
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        [class.is-invalid]="f.password.touched && f.password.invalid"
+                        [class.is-valid]="f.password.touched && f.password.valid"
+                        formControlName="password"
+                        placeholder="Enter password">
+
+                    @if(f.password.touched && f.password.invalid){
+
+                    <div class="invalid-feedback d-block">
+
+                        @if(f.password.errors?.['required']){
+                        Password is required.
+                        }
+
+                        @if(f.password.errors?.['minlength']){
+                        Password must be at least 8 characters.
+                        }
+
+                        @if(f.password.errors?.['pattern']){
+                        Password must contain:
+                        <ul class="mb-0 ps-3">
+                            <li>1 Uppercase Letter</li>
+                            <li>1 Lowercase Letter</li>
+                            <li>1 Number</li>
+                            <li>1 Special Character (@$!%*?&)</li>
+                        </ul>
+                        }
+
+                    </div>
+
+                    }
+
+                </div>
+
+                <!-- Role -->
+
+                <div class="mb-4">
+
+                    <label class="form-label fw-semibold">
+
+                        Role
+
+                    </label>
+
+                    <select
+                        class="form-select"
+                        formControlName="role">
+                        <option value="user">
+                            User
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="d-grid">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-lg"
+                        [disabled]="accountForm.invalid">
+
+                        <i class="bi bi-check-circle-fill me-2"></i>
+
+                        Create Account
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

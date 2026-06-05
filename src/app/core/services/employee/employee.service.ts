@@ -33,7 +33,7 @@ export class EmployeeService {
  
   //update employee
   updateEmployee(id:string,employee:Employee){
-     return this.http.put(
+     return this.http.put<Employee>(
       `${API_ENDPOINTS.EMPLOYEES}/${id}`,employee
      )
   }

@@ -18,37 +18,81 @@ export class EmployeeAdd {
   private router = inject(Router);
 
   private messageService = inject(MessagesServices)
-
   employeeForm = this.fb.group({
 
-    firstName: ['', Validators.required],
+    firstName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(/^[A-Za-z ]+$/)
+      ]
+    ],
 
-    lastName: ['', Validators.required],
+    lastName: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern(/^[A-Za-z ]+$/)
+      ]
+    ],
 
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      '',
+      [Validators.required, Validators.email]
+    ],
 
-    phone: ['', Validators.required],
+    phone: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[0-9]{10}$/)
+      ]
+    ],
 
-    department: ['', Validators.required],
+    department: [
+      '',
+      Validators.required
+    ],
 
-    designation: ['', Validators.required],
+    designation: [
+      '',
+      Validators.required
+    ],
 
-    salary: [0, Validators.required],
+    salary: [
+      null,
+      [
+        Validators.required,
+        Validators.min(1000)
+      ]
+    ],
 
-    joiningDate: ['', Validators.required],
+    joiningDate: [
+      '',
+      Validators.required
+    ],
 
-    status: ['Active', Validators.required]
+    status: [
+      'Active',
+      Validators.required
+    ]
 
   });
 
   onSubmit() {
     if (this.employeeForm.invalid) {
       this.employeeForm.markAllAsTouched();
-      this.messageService.warning('Please Fill The Form');
       return;
     }
 
-    this.employeeService.addEmployee(this.employeeForm.value as any).subscribe({
+    const payload = {
+      ...this.employeeForm.value,
+      accountCreated: false
+    }
+    
+    this.employeeService.addEmployee(payload as any).subscribe({
       next: () => {
         this.messageService.success('Employee Added Successfully');
         this.router.navigate(['/admin/employess']);

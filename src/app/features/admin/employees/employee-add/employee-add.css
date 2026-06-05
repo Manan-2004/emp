@@ -1,0 +1,68 @@
+.employee-container {
+    padding: 20px;
+}
+
+.employee-card {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.employee-header {
+    background: linear-gradient(
+        135deg,
+        #0d6efd,
+        #4f46e5
+    );
+    color: white;
+    padding: 18px 24px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    height: 48px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+}
+
+.input-group-text {
+    border-radius: 10px 0 0 10px;
+}
+
+.btn-success {
+    border-radius: 10px;
+    font-weight: 600;
+    min-width: 180px;
+    height: 48px;
+}
+
+.text-danger {
+    font-size: 13px;
+}
+
+.card {
+    animation: slideIn .4s ease;
+}
+
+@keyframes slideIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}

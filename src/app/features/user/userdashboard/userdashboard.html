@@ -1,1 +1,112 @@
-<p>userdashboard works!</p>
+@if(loading()){
+
+<div class="loading-box">
+
+    <div class="spinner-border">
+    </div>
+
+</div>
+}
+@else {
+<div class="dashboard">
+
+    @if(employee()){
+
+    <div class="welcome-card">
+
+        <h2>
+
+            Welcome
+            {{employee()?.firstName}} 👋
+
+        </h2>
+
+        <p>
+
+            Have a productive day.
+
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>Department</span>
+
+            <h3>
+
+                {{employee()?.department}}
+
+            </h3>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>Designation</span>
+
+            <h3>
+
+                {{employee()?.designation}}
+
+            </h3>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>Status</span>
+
+            <h3>
+
+                {{employee()?.status}}
+
+            </h3>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>Employee ID</span>
+
+            <h3>
+
+                {{employee()?.id}}
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div class="profile-card">
+
+        <h4>
+
+            Personal Details
+
+        </h4>
+
+        <p>
+
+            Name:
+            {{employee()?.firstName}}
+            {{employee()?.lastName}}
+
+        </p>
+
+        <p>
+
+            Email:
+            {{employee()?.email}}
+
+        </p>
+
+    </div>
+
+    }
+
+</div>
+}

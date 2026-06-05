@@ -1,1 +1,172 @@
-<p>profile works!</p>
+<div class="profile-container">
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <div class="avatar">
+
+                A
+
+            </div>
+
+            <h2>
+
+                {{user()?.name}}
+
+            </h2>
+
+            <p>
+
+                {{user()?.role}}
+
+            </p>
+
+        </div>
+
+        <div class="profile-body">
+
+            <div class="profile-item">
+
+                <label>Email</label>
+
+                <span>
+
+                    {{user()?.email}}
+
+                </span>
+
+            </div>
+
+            <div class="profile-item">
+
+                <label>Username</label>
+
+                <span>
+
+                    {{user()?.username}}
+
+                </span>
+
+            </div>
+
+            <div class="profile-item">
+
+                <label>Role</label>
+
+                <span>
+
+                    {{user()?.role}}
+
+                </span>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="profile-actions">
+
+            <button class="btn btn-primary" (click)="openEditProfile()">
+
+                Edit Profile
+
+            </button>
+
+            <button class="btn btn-warning" (click)="openPasswordForm()">
+
+                Change Password
+
+            </button>
+
+        </div>
+
+        @if(showEditForm){
+
+        <div class="card mt-4">
+
+            <div class="card-body">
+
+                <h5>Edit Profile</h5>
+
+                <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+
+                    <div class="mb-3">
+
+                        <label>Name</label>
+
+                        <input class="form-control" formControlName="name">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label>Email</label>
+
+                        <input class="form-control" formControlName="email">
+
+                    </div>
+
+                    <button class="btn btn-success">
+
+                        Save Changes
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        }
+
+        @if(showPasswordForm){
+
+        <div class="card mt-4">
+
+            <div class="card-body">
+
+                <h5>Change Password</h5>
+
+                <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+
+                    <div class="mb-3">
+
+                        <input type="password" class="form-control" placeholder="Current Password"
+                            formControlName="currentPassword">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="password" class="form-control" placeholder="New Password"
+                            formControlName="newPassword">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input type="password" class="form-control" placeholder="Confirm Password"
+                            formControlName="confirmPassword">
+
+                    </div>
+
+                    <button class="btn btn-warning">
+
+                        Update Password
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+</div>

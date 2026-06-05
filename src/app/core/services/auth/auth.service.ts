@@ -36,6 +36,4 @@ export class AuthService {
       isLoggedIn.set(true);
     }
   }
-
-  
 }
