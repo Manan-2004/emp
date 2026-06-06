@@ -34,6 +34,10 @@ export class CreateAccount {
     this.loadEmployee()
   }
 
+  goBack() {
+      this.router.navigate(['/admin/users'])
+  }
+
   loadEmployee() {
     this.employeeService.getEmployeeById(this.employeeId).subscribe({
       next: (res) => {

@@ -1,0 +1,199 @@
+.employee-detail-container{
+    max-width:1200px;
+    margin:auto;
+    padding:24px;
+}
+
+.employee-profile-card{
+    background:white;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 40px rgba(15,23,42,.08);
+}
+
+/* HEADER */
+
+.profile-header{
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color:white;
+
+    padding:35px;
+
+    display:flex;
+    align-items:center;
+    gap:24px;
+}
+
+.avatar{
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:#2563eb;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:36px;
+    font-weight:700;
+}
+
+.profile-info h2{
+    margin:0;
+    font-size:30px;
+    font-weight:700;
+}
+
+.profile-info p{
+    margin:6px 0 10px;
+    opacity:.9;
+}
+
+/* STATUS */
+
+.status-badge{
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status-badge.active{
+    background:#22c55e;
+    color:white;
+}
+
+.status-badge.inactive{
+    background:#ef4444;
+    color:white;
+}
+
+/* DETAILS */
+
+.details-grid{
+    padding:30px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+}
+
+.detail-card{
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    padding:20px;
+}
+
+.detail-card span{
+    display:block;
+
+    color:#64748b;
+
+    font-size:13px;
+
+    margin-bottom:8px;
+}
+
+.detail-card h5{
+    margin:0;
+    font-size:17px;
+    font-weight:600;
+}
+
+.salary-card{
+    background:#eff6ff;
+}
+
+.salary-card h4{
+    margin:0;
+    color:#2563eb;
+    font-size:28px;
+    font-weight:700;
+}
+
+/* ACTIONS */
+
+.action-buttons{
+    display:flex;
+    gap:15px;
+
+    padding:0 30px 30px;
+}
+
+.action-buttons button{
+    border:none;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn-back{
+    background:#e2e8f0;
+}
+
+.btn-edit{
+    background:#f59e0b;
+    color:white;
+}
+
+.btn-delete{
+    background:#ef4444;
+    color:white;
+}
+
+.action-buttons button:hover{
+    transform:translateY(-2px);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .employee-detail-container{
+        padding:12px;
+    }
+
+    .profile-header{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .details-grid{
+        grid-template-columns:1fr;
+        padding:20px;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+        padding:0 20px 20px;
+    }
+
+    .action-buttons button{
+        width:100%;
+    }
+}

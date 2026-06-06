@@ -1,12 +1,22 @@
+
 <div class="card shadow-sm">
 
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="employee-header">
 
-        <h4>
-            Employees
-        </h4>
+        <div>
 
-        <button class="btn btn-primary" (click)="addemployee()">
+            <h2 class="text-white">Employee Management</h2>
+
+            <p>Manage employees, accounts and workforce records</p>
+            <p>
+                Total Employees :
+                {{employees().length}}
+            </p>
+        </div>
+
+        <button class="add-btn" (click)="addemployee()">
+
+            <i class="bi bi-plus-circle"></i>
 
             Add Employee
 
@@ -14,68 +24,43 @@
 
     </div>
 
-    <div class="card-body">
-        <div class="row mb-3">
+    <div class="filter-card">
 
-            <div class="col-md-4">
+        <div class="filter-grid">
+            <div class="search-box">
 
-                <input type="text" class="form-control" placeholder="Search Employee" (input)="onSearch($event)">
+                <i class="bi bi-search"></i>
 
-            </div>
-
-            <div class="col-md-4">
-
-                <select class="form-select" (change)="onDepartmentChange($event)">
-
-                    <option value="">
-                        All Departments
-                    </option>
-
-                    <option value="IT">
-                        IT
-                    </option>
-
-                    <option value="HR">
-                        HR
-                    </option>
-
-                    <option value="Finance">
-                        Finance
-                    </option>
-
-                    <option value="Sales">
-                        Sales
-                    </option>
-
-                    <option value="Marketing">
-                        Marketing
-                    </option>
-
-                </select>
+                <input type="text" class="form-control" placeholder="Search employee..." (input)="onSearch($event)">
 
             </div>
 
-            <div class="col-md-4">
 
-                <select class="form-select" (change)="onStatusChange($event)">
 
-                    <option value="">
-                        All Status
-                    </option>
+            <select class="form-select" (change)="onDepartmentChange($event)">
 
-                    <option value="Active">
-                        Active
-                    </option>
+                <option value="">All Departments</option>
+                <option value="IT">IT</option>
+                <option value="HR">HR</option>
+                <option value="Finance">Finance</option>
+                <option value="Sales">Sales</option>
+                <option value="Marketing">Marketing</option>
 
-                    <option value="Inactive">
-                        Inactive
-                    </option>
+            </select>
 
-                </select>
+            <select class="form-select" (change)="onStatusChange($event)">
 
-            </div>
+                <option value="">All Status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+
+            </select>
 
         </div>
+
+    </div>
+
+    <div class="card-body">
 
         <table class="table table-hover">
 
@@ -104,13 +89,19 @@
             <tbody>
                 @if(loading()){
 
-                <div class="loading-wrapper">
+                <tr>
 
-                    <div class="spinner-border">
+                    <td colspan="7">
 
-                    </div>
+                        <div class="loading-wrapper">
 
-                </div>
+                            <div class="spinner-border text-primary"></div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
 
                 }
                 @else {
@@ -138,35 +129,51 @@
                     </td>
 
                     <td>
-                        <button class="btn btn-sm btn-info me-2" (click)="viewemployee(emp.id)">
-                            View
-                        </button>
 
-                        <button class="btn btn-sm btn-warning me-2" (click)="editemployee(emp.id)">
-                            Edit
-                        </button>
+                        <div class="action-group">
 
-                        <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.id)">
-                            Delete
-                        </button>
-                        @if(!emp.accountCreated){
+                            <button class="action-btn view-btn" (click)="viewemployee(emp.id)">
 
-                        <button class="btn btn-success btn-sm me-2" (click)="createAccount(emp.id)">
+                                View
 
-                            Create Account
+                            </button>
 
-                        </button>
+                            <button class="action-btn edit-btn" (click)="editemployee(emp.id)">
 
-                        }
-                        @else {
+                                Edit
 
-                        <span class="badge bg-success">
+                            </button>
 
-                            Account Created
+                            <button class="action-btn delete-btn" (click)="deleteEmployee(emp.id)">
 
-                        </span>
+                                Delete
 
-                        }
+                            </button>
+
+                            @if(!emp.accountCreated){
+
+                            <button class="action-btn account-btn" (click)="createAccount(emp.id)">
+
+                                <i class="bi bi-person-plus"></i>
+
+                                Create Account
+
+                            </button>
+
+                            }
+                            @else {
+
+                            <span class="account-created-badge">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Account Created
+
+                            </span>
+
+                            }
+                        </div>
+
                     </td>
 
                 </tr>
@@ -185,35 +192,34 @@
 
 
             </tbody>
+            <div class="pagination-box">
 
-            <div class="d-flex justify-content-between align-items-center mt-3">
-
-                <button class="btn btn-outline-primary" (click)="previousPage()" [disabled]="currentPage()===1">
+                <button class="pagination-btn" (click)="previousPage()" [disabled]="currentPage()===1">
 
                     Previous
 
                 </button>
 
-                <span>
+                <div class="page-info">
 
                     Page {{currentPage()}}
-
                     of
-
                     {{totalPages()}}
 
-                </span>
+                </div>
 
-                <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="currentPage()===totalPages()">
+                <button class="pagination-btn" (click)="nextPage()" [disabled]="currentPage()===totalPages()">
 
                     Next
 
                 </button>
+
             </div>
         </table>
     </div>
 </div>
-
+<br>
+<br>
 <div>
     <app-recent-employee></app-recent-employee>
 </div>

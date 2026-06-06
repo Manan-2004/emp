@@ -9,8 +9,19 @@
         </h3>
 
     </div>
+ @if(loading()){
 
-    <div class="table-responsive">
+                <div class="loading-wrapper">
+
+                    <div class="spinner-border">
+
+                    </div>
+
+                </div>
+
+                }
+@else{
+  <div class="table-responsive">
 
         <table class="table">
 
@@ -36,18 +47,8 @@
             </thead>
 
             <tbody>
-                @if(loading()){
-
-                <div class="loading-wrapper">
-
-                    <div class="spinner-border">
-
-                    </div>
-
-                </div>
-
-                }
-                @else {
+               
+               
                 @if (recentEmployees().length > 0) {
                 @for(emp of recentEmployees(); track emp.id){
 
@@ -86,11 +87,13 @@
                     </td>
                 </tr>
                 }
-                }
+                
             </tbody>
 
         </table>
 
     </div>
 
+}
+  
 </div>

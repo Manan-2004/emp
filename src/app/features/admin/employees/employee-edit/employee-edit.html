@@ -232,14 +232,23 @@
 
             <div class="text-end">
 
-                <button type="submit" class="btn btn-warning px-4" [disabled]="employeeForm.invalid">
+                <div class="form-actions">
 
-                    <i class="bi bi-arrow-repeat me-2"></i>
+                    <button type="button" class="view-btn" (click)="viewEmployee()">
 
-                    Update Employee
+                        <i class="bi bi-eye-fill"></i>
+                        View Details
 
-                </button>
+                    </button>
 
+                    <button type="submit" class="update-btn" [disabled]="employeeForm.invalid">
+
+                        <i class="bi bi-arrow-repeat"></i>
+                        Update Employee
+
+                    </button>
+
+                </div>
             </div>
 
         </form>

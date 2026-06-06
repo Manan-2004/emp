@@ -3,6 +3,7 @@ import { currentUser } from '../../../core/state/auth.state';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { MessagesServices } from '../../../core/messages/messages-services';
+import { sidebarOpen } from '../../../core/state/layout.state';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +12,22 @@ import { MessagesServices } from '../../../core/messages/messages-services';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  private authService=inject(AuthService)
-  private router=inject(Router)
-  private messageService=inject(MessagesServices)
-  user=currentUser
+  private authService = inject(AuthService)
+  private router = inject(Router)
+  private messageService = inject(MessagesServices)
+  user = currentUser
+
+  sidebarOpen = sidebarOpen;
+
+  toggleSidebar() {
+    this.sidebarOpen.update(v => !v);
+  }
   
-  logout(){
+  get isAdmin() {
+    return this.user()?.role === 'admin';
+  }
+
+  logout() {
     this.authService.logout()
     this.messageService.success(`Logout SuccessFully`)
     this.router.navigate(['/'])

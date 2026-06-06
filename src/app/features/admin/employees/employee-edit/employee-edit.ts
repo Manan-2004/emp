@@ -97,6 +97,12 @@ export class EmployeeEdit {
 
   });
 
+  viewEmployee() {
+    this.router.navigate(
+      ['/admin/employees', this.employeeId]
+    );
+  }
+
   loadEmployee() {
     this.employeeService
       .getEmployeeById(this.employeeId)

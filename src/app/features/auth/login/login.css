@@ -1,59 +1,319 @@
+/* ==========================
+   LOGIN PAGE
+========================== */
+
 .login-wrapper {
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #4f46e5,
-    #7c3aed,
-    #2563eb
-  );
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(67, 56, 202, 0.95),
+      rgba(124, 58, 237, 0.92)
+    ),
+    url("https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600")
+      center center / cover no-repeat;
 }
+
+/* ==========================
+   CARD
+========================== */
 
 .login-card {
-  border-radius: 20px;
+  width: 100%;
+  border: none;
+  border-radius: 28px;
+
   overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.18);
+
+  animation: fadeUp .5s ease;
 }
 
+.card-body {
+  padding: 2rem !important;
+}
+
+/* ==========================
+   LOGO
+========================== */
+
 .logo-circle {
-  width: 80px;
-  height: 80px;
-  background: #0d6efd;
-  color: white;
-  border-radius: 50%;
+  width: 95px;
+  height: 95px;
+
   margin: auto;
+
+  border-radius: 50%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-size: 32px;
+  font-size: 38px;
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+  );
+
+  box-shadow:
+    0 12px 30px rgba(79, 70, 229, 0.35);
+}
+
+.logo-circle i {
+  line-height: 1;
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+h3 {
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.text-muted {
+  font-size: 14px;
+}
+
+/* ==========================
+   ROLE SWITCH
+========================== */
+
+.role-switch {
+  display: flex;
+  gap: 8px;
+
+  padding: 6px;
+
+  background: #f3f4f6;
+
+  border-radius: 14px;
+
+  margin-top: 20px;
+}
+
+.role-btn {
+  flex: 1;
+
+  border: none;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background: transparent;
+
+  font-weight: 600;
+
+  transition: all .3s ease;
+
+  color: #4b5563;
+}
+
+.role-btn i {
+  margin-right: 6px;
+}
+
+.role-btn:hover {
+  background: rgba(255,255,255,.7);
+}
+
+.role-btn.active {
+  background: white;
+  color: #4f46e5;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,.08);
+}
+
+/* ==========================
+   FORM
+========================== */
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
 }
 
 .form-control {
-  height: 48px;
-  border-radius: 10px;
+  height: 54px;
+
+  border-radius: 14px;
+
+  border: 2px solid #e5e7eb;
+
+  font-size: 15px;
+
+  transition: all .3s ease;
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 4px rgba(99,102,241,.15);
 }
+
+.form-control::placeholder {
+  color: #9ca3af;
+}
+
+/* ==========================
+   LOGIN BUTTON
+========================== */
 
 .btn-primary {
-  border-radius: 10px;
+  height: 54px;
+
+  border: none;
+
+  border-radius: 14px;
+
   font-weight: 600;
+
+  font-size: 15px;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+  );
+
+  transition: all .3s ease;
 }
 
-.card {
-  animation: fadeIn 0.4s ease-in-out;
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(79,70,229,.35);
 }
 
-@keyframes fadeIn {
+.btn-primary:disabled {
+  opacity: .65;
+}
+
+/* ==========================
+   ERROR TEXT
+========================== */
+
+.text-danger {
+  font-size: 13px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* ==========================
+   DEMO INFO BOX
+========================== */
+
+.demo-box {
+  margin-top: 20px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  background: #f9fafb;
+
+  border: 1px solid #e5e7eb;
+
+  text-align: center;
+}
+
+.demo-box small {
+  color: #6b7280;
+}
+
+/* ==========================
+   ANIMATION
+========================== */
+
+@keyframes fadeUp {
+
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(30px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width: 768px) {
+
+  .login-wrapper {
+    padding: 16px;
+  }
+
+  .card-body {
+    padding: 1.5rem !important;
+  }
+
+  .logo-circle {
+    width: 85px;
+    height: 85px;
+    font-size: 34px;
+  }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 576px) {
+
+  .login-card {
+    border-radius: 22px;
+  }
+
+  .card-body {
+    padding: 1.25rem !important;
+  }
+
+  .logo-circle {
+    width: 75px;
+    height: 75px;
+    font-size: 28px;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .role-btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .form-control {
+    height: 50px;
+  }
+
+  .btn-primary {
+    height: 50px;
   }
 }

@@ -16,9 +16,7 @@
 
     <div class="loading-box">
 
-        <div
-            class="spinner-border"
-            role="status">
+        <div class="spinner-border" role="status">
         </div>
 
         <p>
@@ -35,48 +33,95 @@
 
     <div class="stats-grid">
 
-        <div class="stat-card">
+        <div class="stat-card employees-card">
 
-            <span>Total Employees</span>
+            <div class="card-top">
 
-            <h2>
-                {{totalEmployees()}}
-            </h2>
+                <div>
+                    <span>Total Employees</span>
+
+                    <h2>
+                        {{totalEmployees()}}
+                    </h2>
+                </div>
+
+                <div class="card-icon">
+
+                    <i class="bi bi-people-fill"></i>
+
+                </div>
+
+            </div>
 
         </div>
 
         <div class="stat-card active-card">
 
-            <span>Active Employees</span>
+            <div class="card-top">
 
-            <h2>
-                {{activeEmployees()}}
-            </h2>
+                <div>
+                    <span>Active Employees</span>
+
+                    <h2>
+                        {{activeEmployees()}}
+                    </h2>
+                </div>
+
+                <div class="card-icon">
+
+                    <i class="bi bi-person-check-fill"></i>
+
+                </div>
+
+            </div>
 
         </div>
 
         <div class="stat-card inactive-card">
 
-            <span>Inactive Employees</span>
+            <div class="card-top">
 
-            <h2>
-                {{inactiveEmployees()}}
-            </h2>
+                <div>
+                    <span>Inactive Employees</span>
+
+                    <h2>
+                        {{inactiveEmployees()}}
+                    </h2>
+                </div>
+
+                <div class="card-icon">
+
+                    <i class="bi bi-person-x-fill"></i>
+
+                </div>
+
+            </div>
 
         </div>
 
         <div class="stat-card department-card">
 
-            <span>Departments</span>
+            <div class="card-top">
 
-            <h2>
-                {{totalDepartments()}}
-            </h2>
+                <div>
+                    <span>Departments</span>
+
+                    <h2>
+                        {{totalDepartments()}}
+                    </h2>
+                </div>
+
+                <div class="card-icon">
+
+                    <i class="bi bi-building-fill"></i>
+
+                </div>
+
+            </div>
 
         </div>
 
     </div>
-
     <!-- Recent employee -->
     <app-recent-employee></app-recent-employee>
 

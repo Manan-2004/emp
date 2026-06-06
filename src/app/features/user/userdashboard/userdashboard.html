@@ -1,112 +1,204 @@
 @if(loading()){
 
-<div class="loading-box">
+<div class="loading-wrapper">
 
-    <div class="spinner-border">
-    </div>
+    <div class="spinner-border text-primary"></div>
 
 </div>
+
 }
+
 @else {
-<div class="dashboard">
+
+<div class="dashboard-container">
 
     @if(employee()){
 
-    <div class="welcome-card">
+    <!-- Hero Section -->
 
-        <h2>
+    <div class="hero-card">
 
-            Welcome
-            {{employee()?.firstName}} 👋
+        <div class="hero-content">
 
-        </h2>
+            <h2>
+                Welcome Back,
+                {{employee()?.firstName}}
+                👋
+            </h2>
 
-        <p>
+            <p>
+                Here's your employee overview dashboard.
+            </p>
 
-            Have a productive day.
+        </div>
 
-        </p>
+        <div class="hero-avatar">
+
+            {{employee()?.firstName?.charAt(0)}}
+
+        </div>
 
     </div>
+
+    <!-- Stats -->
 
     <div class="stats-grid">
 
         <div class="stat-card">
 
+            <i class="bi bi-building"></i>
+
             <span>Department</span>
 
-            <h3>
-
-                {{employee()?.department}}
-
-            </h3>
+            <h4>{{employee()?.department}}</h4>
 
         </div>
 
         <div class="stat-card">
+
+            <i class="bi bi-briefcase-fill"></i>
 
             <span>Designation</span>
 
-            <h3>
-
-                {{employee()?.designation}}
-
-            </h3>
+            <h4>{{employee()?.designation}}</h4>
 
         </div>
 
         <div class="stat-card">
 
-            <span>Status</span>
-
-            <h3>
-
-                {{employee()?.status}}
-
-            </h3>
-
-        </div>
-
-        <div class="stat-card">
+            <i class="bi bi-person-badge-fill"></i>
 
             <span>Employee ID</span>
 
-            <h3>
+            <h4>{{employee()?.id}}</h4>
 
-                {{employee()?.id}}
+        </div>
 
-            </h3>
+        <div class="stat-card">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            <span>Status</span>
+
+            <h4
+                [class.text-success]="employee()?.status === 'Active'"
+                [class.text-danger]="employee()?.status === 'Inactive'">
+
+                {{employee()?.status}}
+
+            </h4>
 
         </div>
 
     </div>
 
-    <div class="profile-card">
+    <!-- Info Cards -->
 
-        <h4>
+    <div class="info-grid">
 
-            Personal Details
+        <div class="info-card">
 
-        </h4>
+            <h5>
 
-        <p>
+                <i class="bi bi-person-lines-fill me-2"></i>
 
-            Name:
-            {{employee()?.firstName}}
-            {{employee()?.lastName}}
+                Personal Information
 
-        </p>
+            </h5>
 
-        <p>
+            <div class="info-row">
 
-            Email:
-            {{employee()?.email}}
+                <span>Full Name</span>
 
-        </p>
+                <strong>
+                    {{employee()?.firstName}}
+                    {{employee()?.lastName}}
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>Joining Date</span>
+
+                <strong>
+                    {{employee()?.joiningDate}}
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="info-card">
+
+            <h5>
+
+                <i class="bi bi-envelope-fill me-2"></i>
+
+                Contact Information
+
+            </h5>
+
+            <div class="info-row">
+
+                <span>Email</span>
+
+                <strong>
+                    {{employee()?.email}}
+                </strong>
+
+            </div>
+
+            <div class="info-row">
+
+                <span>Phone</span>
+
+                <strong>
+                    {{employee()?.phone}}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="quick-card">
+
+        <h5>
+
+            <i class="bi bi-lightning-fill me-2"></i>
+
+            Quick Actions
+
+        </h5>
+
+        <div class="action-buttons">
+
+            <button class="btn btn-primary" (click)="GoProfile()">
+
+                <i class="bi bi-person-circle me-2"></i>
+
+                My Profile
+
+            </button>
+
+            <button class="btn btn-outline-primary" (click)="GoDetail()">
+
+                <i class="bi bi-key-fill me-2"></i>
+
+                View details
+
+            </button>
+
+        </div>
 
     </div>
 
     }
 
 </div>
+
 }

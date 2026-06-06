@@ -22,11 +22,14 @@ export class Admindashboard {
     this.loading.set(true);
     this.employeeService.getEmployees().subscribe({
       next: (res) => {
-        this.employees.set(res);
-        this.loading.set(false);
+        setTimeout(() => {
+          this.employees.set(res);
+          this.loading.set(false);
+        },500)
       },
-      error: () => {
+      error: (err) => {
         this.loading.set(false);
+        console.log(err)
       }
     });
   }
@@ -46,8 +49,8 @@ export class Admindashboard {
       emp => emp.status === 'Inactive'
     ).length
   );
-  
-   totalDepartments = computed(() =>
+
+  totalDepartments = computed(() =>
     new Set(
       this.employees().map(
         emp => emp.department

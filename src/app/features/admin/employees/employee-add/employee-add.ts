@@ -80,7 +80,10 @@ export class EmployeeAdd {
     ]
 
   });
-
+ 
+  goBack(){
+     this.router.navigate(['/admin/employess'])
+  }
   onSubmit() {
     if (this.employeeForm.invalid) {
       this.employeeForm.markAllAsTouched();

@@ -34,15 +34,17 @@ export class MessagesServices {
     });
   }
 
-  confirmDelete(message: string = 'Are you sure you want to delete this?') {
+  confirmDelete(title:string="Delete User",message: string = 'Are you sure you want to delete this?'
+    ,buttontext:string="Delete"
+  ) {
     return Swal.fire({
-      title: 'Confirm Delete',
+      title: title,
       text: message,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: buttontext,
       cancelButtonText: 'Cancel'
     });
   }

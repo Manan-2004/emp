@@ -1,38 +1,148 @@
-<div class="card shadow">
+<div class="employee-detail-container">
 
-    <div class="card-header">
+    <div class="employee-profile-card">
 
-        <h3>Employee Details</h3>
+        <!-- Header -->
 
-    </div>
+        <div class="profile-header">
 
-    <div class="card-body">
+            <div class="avatar">
 
-        <p>
-            <strong>Name:</strong>
-            {{employee()?.firstName}}
-            {{employee()?.lastName}}
-        </p>
+                {{employee()?.firstName?.charAt(0)}}
 
-        <p>
-            <strong>Email:</strong>
-            {{employee()?.email}}
-        </p>
+            </div>
 
-        <p>
-            <strong>Department:</strong>
-            {{employee()?.department}}
-        </p>
+            <div class="profile-info">
 
-        <p>
-            <strong>Designation:</strong>
-            {{employee()?.designation}}
-        </p>
+                <h2>
+                    {{employee()?.firstName}}
+                    {{employee()?.lastName}}
+                </h2>
 
-        <p>
-            <strong>Salary:</strong>
-            ₹{{employee()?.salary}}
-        </p>
+                <p>
+                    {{employee()?.designation}}
+                </p>
+
+                <span
+                    class="status-badge"
+                    [class.active]="employee()?.status === 'Active'"
+                    [class.inactive]="employee()?.status === 'Inactive'">
+
+                    {{employee()?.status}}
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Details -->
+
+        <div class="details-grid">
+
+            <div class="detail-card">
+
+                <span>Employee ID</span>
+
+                <h5>{{employee()?.id}}</h5>
+
+            </div>
+
+            <div class="detail-card">
+
+                <span>Email</span>
+
+                <h5>{{employee()?.email}}</h5>
+
+            </div>
+
+            <div class="detail-card">
+
+                <span>Phone Number</span>
+
+                <h5>{{employee()?.phone}}</h5>
+
+            </div>
+
+            <div class="detail-card">
+
+                <span>Department</span>
+
+                <h5>{{employee()?.department}}</h5>
+
+            </div>
+
+            <div class="detail-card">
+
+                <span>Designation</span>
+
+                <h5>{{employee()?.designation}}</h5>
+
+            </div>
+
+            <div class="detail-card salary-card">
+
+                <span>Salary</span>
+
+                <h4>
+                    ₹ {{employee()?.salary}}
+                </h4>
+
+            </div>
+
+            <div class="detail-card">
+
+                <span>Joining Date</span>
+
+                <h5>{{employee()?.joiningDate}}</h5>
+
+            </div>
+
+            <div class="detail-card">
+
+                <span>Status</span>
+
+                <h5>{{employee()?.status}}</h5>
+
+            </div>
+
+        </div>
+
+        <!-- Actions -->
+
+        <div class="action-buttons">
+
+            <button
+                class="btn-back"
+                (click)="goBack()">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back
+
+            </button>
+
+            <button
+                class="btn-edit"
+                (click)="editEmployee()">
+
+                <i class="bi bi-pencil-square"></i>
+
+                Edit
+
+            </button>
+
+            <button
+                class="btn-delete"
+                (click)="deleteEmployee()">
+
+                <i class="bi bi-trash"></i>
+
+                Delete
+
+            </button>
+
+        </div>
 
     </div>
 

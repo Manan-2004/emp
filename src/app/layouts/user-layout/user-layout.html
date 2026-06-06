@@ -1,5 +1,16 @@
 <div class="app-layout">
 
+    <!-- Mobile Overlay -->
+
+    @if(sidebarOpen()){
+
+    <div
+        class="sidebar-overlay"
+        (click)="sidebarOpen.set(false)">
+    </div>
+
+    }
+
     <app-sidebar></app-sidebar>
 
     <div class="main-wrapper">

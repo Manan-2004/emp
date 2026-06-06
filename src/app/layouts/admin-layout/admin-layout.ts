@@ -3,6 +3,7 @@ import { Sidebar } from '../../shared/components/sidebar/sidebar';
 import { Navbar } from '../../shared/components/navbar/navbar';
 import { Footer } from '../../shared/components/footer/footer';
 import { RouterOutlet } from '@angular/router';
+import { sidebarOpen } from '../../core/state/layout.state';
 
 @Component({
   selector: 'app-admin-layout',
@@ -12,5 +13,5 @@ import { RouterOutlet } from '@angular/router';
 })
 
 export class AdminLayout {
-   
+  sidebarOpen = sidebarOpen;
 }

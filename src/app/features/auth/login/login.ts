@@ -15,7 +15,8 @@ export class Login {
   private authService = inject(AuthService)
   private fb = inject(FormBuilder)
   private router = inject(Router)
-  private messageService=inject(MessagesServices)
+  private messageService = inject(MessagesServices)
+  selectedRole: 'admin' | 'user' = 'user';
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
@@ -41,6 +42,14 @@ export class Login {
 
       if (!user) {
         this.messageService.error("Invalid Username or Password")
+        return;
+      }
+
+      // Role Check
+      if (user.role !== this.selectedRole) {
+        this.messageService.error(
+          `Please login from ${user.role} section`
+        );
         return;
       }
 

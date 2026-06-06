@@ -4,11 +4,13 @@ import { authGuard } from './core/guards/auth/auth.guard';
 import { adminGuard } from './core/guards/admin/admin.guard';
 import { UserLayout } from './layouts/user-layout/user-layout';
 import { userGuard } from './core/guards/user/user.guard';
+import { loginGuard } from './core/guards/auth/login-guard';
 
 export const routes: Routes = [
   {
     path:'',
-    loadChildren:()=>import('./features/auth/auth.routes').then((a)=>a.AUTH_ROUTES)
+    loadChildren:()=>import('./features/auth/auth.routes').then((a)=>a.AUTH_ROUTES),
+    canActivate:[loginGuard]
   },
   {
     path:'admin',

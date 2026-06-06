@@ -1,16 +1,61 @@
 .app-layout{
-    display:flex;
     min-height:100vh;
+    background:#f1f5f9;
 }
 
+/* MAIN CONTENT */
+
 .main-wrapper{
-    flex:1;
+    margin-left:280px;
+
+    min-height:100vh;
+
     display:flex;
     flex-direction:column;
 }
 
+/* PAGE */
+
 .page-container{
     flex:1;
-    padding:20px;
-    background:#f5f7fa;
+
+    padding:24px;
+
+    background:#f1f5f9;
+}
+
+/* MOBILE OVERLAY */
+
+.sidebar-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:1500;
+}
+
+/* TABLET */
+
+@media(max-width:992px){
+
+    .main-wrapper{
+        margin-left:260px;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .main-wrapper{
+        margin-left:0;
+    }
+
+    .page-container{
+        padding:15px;
+    }
+
 }

@@ -5,9 +5,7 @@
         <div class="profile-header">
 
             <div class="avatar">
-
-                A
-
+                {{user()?.name?.charAt(0)}}
             </div>
 
             <h2>
@@ -18,7 +16,9 @@
 
             <p>
 
-                {{user()?.role}}
+                <span class="role-badge">
+                    {{user()?.role}}
+                </span>
 
             </p>
 
@@ -68,13 +68,17 @@
 
         <div class="profile-actions">
 
-            <button class="btn btn-primary" (click)="openEditProfile()">
+            <button class="edit-btn" (click)="openEditProfile()">
+
+                <i class="bi bi-pencil-square me-2"></i>
 
                 Edit Profile
 
             </button>
 
-            <button class="btn btn-warning" (click)="openPasswordForm()">
+            <button class="password-btn" (click)="openPasswordForm()">
+
+                <i class="bi bi-shield-lock me-2"></i>
 
                 Change Password
 
@@ -83,49 +87,65 @@
         </div>
 
         @if(showEditForm){
-
-        <div class="card mt-4">
-
+        <div class="card form-card">
             <div class="card-body">
-
                 <h5>Edit Profile</h5>
 
                 <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
 
                     <div class="mb-3">
+                        <label class="form-label">Name</label>
 
-                        <label>Name</label>
+                        <input type="text" class="form-control" formControlName="name">
 
-                        <input class="form-control" formControlName="name">
+                        @if(profileForm.get('name')?.touched &&
+                        profileForm.get('name')?.errors?.['required']){
+                        <small class="text-danger">
+                            Name is required
+                        </small>
+                        }
 
+                        @if(profileForm.get('name')?.touched &&
+                        profileForm.get('name')?.errors?.['minlength']){
+                        <small class="text-danger">
+                            Name must be at least 3 characters
+                        </small>
+                        }
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Email</label>
 
-                        <label>Email</label>
+                        <input type="email" class="form-control" formControlName="email">
 
-                        <input class="form-control" formControlName="email">
+                        @if(profileForm.get('email')?.touched &&
+                        profileForm.get('email')?.errors?.['required']){
+                        <small class="text-danger">
+                            Email is required
+                        </small>
+                        }
 
+                        @if(profileForm.get('email')?.touched &&
+                        profileForm.get('email')?.errors?.['email']){
+                        <small class="text-danger">
+                            Enter a valid email
+                        </small>
+                        }
                     </div>
 
-                    <button class="btn btn-success">
+                    <button type="submit" class="save-btn" [disabled]="profileForm.invalid">
 
                         Save Changes
 
                     </button>
 
                 </form>
-
             </div>
-
         </div>
-
         }
 
         @if(showPasswordForm){
-
-        <div class="card mt-4">
-
+        <div class="card form-card">
             <div class="card-body">
 
                 <h5>Change Password</h5>
@@ -133,40 +153,51 @@
                 <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
 
                     <div class="mb-3">
-
                         <input type="password" class="form-control" placeholder="Current Password"
                             formControlName="currentPassword">
-
                     </div>
 
                     <div class="mb-3">
-
                         <input type="password" class="form-control" placeholder="New Password"
                             formControlName="newPassword">
 
+                        @if(passwordForm.get('newPassword')?.touched &&
+                        passwordForm.get('newPassword')?.errors?.['required']){
+                        <small class="text-danger">
+                            Password is required
+                        </small>
+                        }
+
+                        @if(passwordForm.get('newPassword')?.touched &&
+                        passwordForm.get('newPassword')?.errors?.['minlength']){
+                        <small class="text-danger">
+                            Minimum 8 characters required
+                        </small>
+                        }
+
+                        @if(passwordForm.get('newPassword')?.touched &&
+                        passwordForm.get('newPassword')?.errors?.['pattern']){
+                        <small class="text-danger">
+                            Must contain uppercase, lowercase,
+                            number and special character.
+                        </small>
+                        }
                     </div>
 
                     <div class="mb-3">
-
                         <input type="password" class="form-control" placeholder="Confirm Password"
                             formControlName="confirmPassword">
-
                     </div>
 
-                    <button class="btn btn-warning">
-
+                    <button type="submit" class="password-save-btn" [disabled]="passwordForm.invalid">
                         Update Password
-
                     </button>
 
                 </form>
 
             </div>
-
         </div>
-
         }
-
     </div>
 
 </div>

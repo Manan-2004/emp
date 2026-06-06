@@ -42,108 +42,94 @@
 
     </div>
 
-    <!-- Personal -->
+    <div class="details-grid">
 
-    <div class="details-card">
+        <!-- Personal Card -->
+
+        <div class="details-card">
+
+            <h4>
+                <i class="bi bi-person-fill me-2"></i>
+                Personal Information
+            </h4>
+
+            <div class="info-row">
+                <span>Full Name</span>
+                <strong>
+                    {{employee()?.firstName}}
+                    {{employee()?.lastName}}
+                </strong>
+            </div>
+
+            <div class="info-row">
+                <span>Email</span>
+                <strong>{{employee()?.email}}</strong>
+            </div>
+
+        </div>
+
+        <!-- Professional Card -->
+
+        <div class="details-card">
+
+            <h4>
+                <i class="bi bi-briefcase-fill me-2"></i>
+                Professional Information
+            </h4>
+
+            <div class="info-row">
+                <span>Department</span>
+                <strong>{{employee()?.department}}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Designation</span>
+                <strong>{{employee()?.designation}}</strong>
+            </div>
+
+            <div class="info-row">
+                <span>Status</span>
+
+                <strong>
+
+                    <span [class]="employee()?.status === 'Active'
+                  ? 'status-active'
+                  : 'status-inactive'">
+
+                        {{employee()?.status}}
+
+                    </span>
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="action-card">
 
         <h4>
 
-            Personal Information
+            <i class="bi bi-lightning-charge-fill me-2"></i>
+
+            Quick Actions
 
         </h4>
 
-        <div class="info-row">
+        <div class="action-buttons">
 
-            <span>Name</span>
+            <button class="btn btn-primary" routerLink="/user/profile">
 
-            <strong>
+                <i class="bi bi-person-circle me-2"></i>
 
-                {{employee()?.firstName}}
-                {{employee()?.lastName}}
+                View Profile
 
-            </strong>
-
-        </div>
-
-        <div class="info-row">
-
-            <span>Email</span>
-
-            <strong>
-
-                {{employee()?.email}}
-
-            </strong>
+            </button>
 
         </div>
 
     </div>
-
-    <!-- Professional -->
-
-    <div class="details-card">
-
-        <h4>
-
-            Professional Information
-
-        </h4>
-
-        <div class="info-row">
-
-            <span>Department</span>
-
-            <strong>
-
-                {{employee()?.department}}
-
-            </strong>
-
-        </div>
-
-        <div class="info-row">
-
-            <span>Designation</span>
-
-            <strong>
-
-                {{employee()?.designation}}
-
-            </strong>
-
-        </div>
-
-        <div class="info-row">
-
-            <span>Status</span>
-
-            <strong>
-
-                {{employee()?.status}}
-
-            </strong>
-
-        </div>
-
-    </div>
-
-    <div class="details-card">
-    <div class="d-flex gap-2 flex-wrap">
-
-        <button
-            class="btn btn-outline-primary"
-            routerLink="/user/profile">
-
-            <i class="bi bi-person-circle me-2"></i>
-              View Profile
-
-        </button>
-
-
-    </div>
-
-</div>
-
 </div>
 
 }

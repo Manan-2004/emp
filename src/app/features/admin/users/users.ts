@@ -2,6 +2,8 @@ import { Component, inject, signal } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../core/services/auth/user.service';
 import { MessagesServices } from '../../../core/messages/messages-services';
+import { EmployeeService } from '../../../core/services/employee/employee.service';
+
 
 @Component({
   selector: 'app-users',
@@ -9,10 +11,12 @@ import { MessagesServices } from '../../../core/messages/messages-services';
   templateUrl: './users.html',
   styleUrl: './users.css',
 })
-export class Users {
-   private userService =inject(UserService);
 
-  private messageService =inject(MessagesServices);
+export class Users {
+  private userService = inject(UserService);
+
+  private messageService = inject(MessagesServices);
+  private employeeService = inject(EmployeeService)
 
   users = signal<User[]>([]);
   filteredUsers = signal<User[]>([]);
@@ -33,7 +37,7 @@ export class Users {
     this.userService.getUsers()
       .subscribe({
 
-        next:(res)=>{
+        next: (res) => {
 
           this.users.set(res);
 
@@ -43,7 +47,7 @@ export class Users {
 
         },
 
-        error:()=>{
+        error: () => {
 
           this.loading.set(false);
 
@@ -58,30 +62,30 @@ export class Users {
     let filtered =
       this.users();
 
-    if(this.searchTerm()){
+    if (this.searchTerm()) {
 
       let search =
         this.searchTerm()
-        .toLowerCase();
+          .toLowerCase();
 
       filtered =
         filtered.filter(user =>
 
           user.username
-          .toLowerCase()
-          .includes(search)
+            .toLowerCase()
+            .includes(search)
 
           ||
 
           user.name
-          .toLowerCase()
-          .includes(search)
+            .toLowerCase()
+            .includes(search)
 
         );
 
     }
 
-    if(this.selectedRole()){
+    if (this.selectedRole()) {
 
       filtered =
         filtered.filter(user =>
@@ -97,11 +101,11 @@ export class Users {
 
   }
 
-  onSearch(event:Event){
+  onSearch(event: Event) {
 
     let value =
       (event.target as HTMLInputElement)
-      .value;
+        .value;
 
     this.searchTerm.set(value);
 
@@ -109,11 +113,11 @@ export class Users {
 
   }
 
-  onRoleChange(event:Event){
+  onRoleChange(event: Event) {
 
     let value =
       (event.target as HTMLSelectElement)
-      .value;
+        .value;
 
     this.selectedRole.set(value);
 
@@ -121,9 +125,9 @@ export class Users {
 
   }
 
-  deleteUser(user:User){
+  deleteUser(user: User) {
 
-    if(user.username === 'admin'){
+    if (user.username === 'admin') {
 
       this.messageService.error(
         'Admin cannot be deleted'
@@ -137,18 +141,33 @@ export class Users {
       .confirmDelete(
         'Delete this user?'
       )
-      .then(res=>{
+      .then(res => {
 
-        if(res.isConfirmed){
+        if (res.isConfirmed) {
 
           this.userService
             .deleteUser(user.id.toString())
             .subscribe({
-
-              next:()=>{
+              next: () => {
+                this.employeeService
+                  .getEmployees().subscribe({
+                    next: (employees) => {
+                      const employee = employees.find(e => e.email === user.email);
+                      if (employee) {
+                        this.employeeService
+                          .updateEmployee(
+                            employee.id,
+                            {
+                              ...employee,
+                              accountCreated: false
+                            }
+                          ).subscribe();
+                      }
+                    }
+                  });
 
                 this.messageService.success(
-                  'User deleted'
+                  'User deleted successfully'
                 );
 
                 this.loadUsers();
@@ -163,17 +182,24 @@ export class Users {
 
   }
 
-  resetPassword(user:User){
 
-    let updatedUser = {
+resetPassword(user: User) {
 
-      ...user,
+  this.messageService.confirmDelete(
+    'Reset Password?',
+    `Are you sure you want to reset password for ${user.username}?`,
+    "Reset"
+  )
+  .then(res => {
 
-      password:'123456'
+    if(res.isConfirmed){
 
-    };
+      const updatedUser = {
+        ...user,
+        password: '123456'
+      };
 
-    this.userService
+      this.userService
       .updateUser(
         user.id.toString(),
         updatedUser
@@ -183,12 +209,17 @@ export class Users {
         next:()=>{
 
           this.messageService.success(
-            'Password reset to 123456'
+            `Password reset successfully.
+             New Password: 123456`
           );
 
         }
 
       });
 
-  }
+    }
+
+  });
+}
+
 }

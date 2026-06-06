@@ -30,7 +30,7 @@ export class AuthService {
 
 
   loadUser() {
-    let user = localStorage.getItem('user')
+    const user = localStorage.getItem('user')
     if (user) {
       currentUser.set(JSON.parse(user));
       isLoggedIn.set(true);

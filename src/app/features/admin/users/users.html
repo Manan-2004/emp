@@ -1,158 +1,217 @@
-<div class="card shadow-sm">
+<div class="users-page">
 
-    <div class="card-header">
+    <!-- Header -->
 
-        <h4>
+    <div class="users-header">
 
-            Users Management
+        <div>
+            <h2>User Management</h2>
+            <p>Manage system users, permissions and account access</p>
+        </div>
 
-        </h4>
+        <div class="user-count-card">
+
+            <span>{{filteredUsers().length}}</span>
+
+            <small>Total Users</small>
+
+        </div>
 
     </div>
 
-    <div class="card-body">
+    <!-- Filters -->
 
-        <div class="row mb-3">
+    <div class="filter-card">
 
-            <div class="col-md-6">
+        <div class="filter-grid">
+
+            <div class="search-box">
+
+                <i class="bi bi-search"></i>
 
                 <input
                     type="text"
                     class="form-control"
-                    placeholder="Search User"
+                    placeholder="Search by username or name"
                     (input)="onSearch($event)">
 
             </div>
 
-            <div class="col-md-3">
+            <select
+                class="form-select"
+                (change)="onRoleChange($event)">
 
-                <select
-                    class="form-select"
-                    (change)="onRoleChange($event)">
+                <option value="">
+                    All Roles
+                </option>
 
-                    <option value="">
+                <option value="admin">
+                    Admin
+                </option>
 
-                        All Roles
+                <option value="user">
+                    User
+                </option>
 
-                    </option>
-
-                    <option value="admin">
-
-                        Admin
-
-                    </option>
-
-                    <option value="user">
-
-                        User
-
-                    </option>
-
-                </select>
-
-            </div>
+            </select>
 
         </div>
 
+    </div>
+
+    <!-- Table Card -->
+
+    <div class="table-card">
+
         @if(loading()){
 
-        <div class="text-center p-5">
+        <div class="loading-wrapper">
 
-            <div
-              class="spinner-border">
-            </div>
+            <div class="spinner-border text-primary"></div>
+
+            <p>Loading Users...</p>
 
         </div>
 
         }
-        @else{
 
-        <table class="table table-hover">
+        @else {
 
-            <thead>
+        <div class="table-responsive">
 
-                <tr>
+            <table class="table align-middle">
 
-                    <th>Username</th>
+                <thead>
 
-                    <th>Name</th>
+                    <tr>
 
-                    <th>Email</th>
+                        <th>Username</th>
 
-                    <th>Role</th>
+                        <th>Full Name</th>
 
-                    <th>Action</th>
+                        <th>Email</th>
 
-                </tr>
+                        <th>Role</th>
 
-            </thead>
+                        <th width="280">Actions</th>
 
-            <tbody>
+                    </tr>
 
-                @for(user of filteredUsers(); track user.id){
+                </thead>
 
-                <tr>
+                <tbody>
 
-                    <td>
+                    @for(user of filteredUsers(); track user.id){
 
-                        {{user.username}}
+                    <tr>
 
-                    </td>
+                        <td>
 
-                    <td>
+                            <div class="user-info">
 
-                        {{user.name}}
+                                <div class="avatar">
 
-                    </td>
+                                    {{user.name.charAt(0).toUpperCase()}}
 
-                    <td>
+                                </div>
 
-                        {{user.email}}
+                                <span>{{user.username}}</span>
 
-                    </td>
+                            </div>
 
-                    <td>
+                        </td>
 
-                        <span
-                         class="badge bg-primary">
+                        <td>
 
-                            {{user.role}}
+                            {{user.name}}
 
-                        </span>
+                        </td>
 
-                    </td>
+                        <td>
 
-                    <td>
+                            {{user.email}}
 
-                        <button
-                          class="btn btn-warning btn-sm me-2"
-                          (click)="resetPassword(user)">
+                        </td>
 
-                          Reset Password
+                        <td>
 
-                        </button>
+                            @if(user.role === 'admin'){
 
-                        @if(user.username !== 'admin'){
+                            <span class="role-badge admin-role">
 
-                        <button
-                          class="btn btn-danger btn-sm"
-                          (click)="deleteUser(user)">
+                                Admin
 
-                          Delete
+                            </span>
 
-                        </button>
+                            }
 
-                        }
+                            @else {
 
-                    </td>
+                            <span class="role-badge user-role">
 
-                </tr>
+                                User
 
-                }
+                            </span>
 
-            </tbody>
+                            }
 
-        </table>
+                        </td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button
+                                    class="reset-btn"
+                                    (click)="resetPassword(user)">
+
+                                    <i class="bi bi-key-fill"></i>
+
+                                    Reset
+
+                                </button>
+
+                                @if(user.username !== 'admin'){
+
+                                <button
+                                    class="delete-btn"
+                                    (click)="deleteUser(user)">
+
+                                    <i class="bi bi-trash-fill"></i>
+
+                                    Delete
+
+                                </button>
+
+                                }
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        @if(filteredUsers().length === 0){
+
+        <div class="empty-state">
+
+            <i class="bi bi-people"></i>
+
+            <h4>No Users Found</h4>
+
+            <p>Try changing your search criteria.</p>
+
+        </div>
+
+        }
 
         }
 

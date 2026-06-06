@@ -1,0 +1,219 @@
+/* =========================
+   RECENT EMPLOYEES TABLE
+========================= */
+
+.table-responsive{
+
+    overflow-x:auto;
+
+    border-radius:18px;
+}
+
+.table{
+
+    width:100%;
+
+    min-width:950px;
+
+    margin:0;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+}
+
+/* HEADER */
+
+.table thead{
+
+    background:#f8fafc;
+}
+
+.table th{
+
+    padding:16px 18px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+    color:#64748b;
+
+    border-bottom:1px solid #e2e8f0;
+
+    white-space:nowrap;
+}
+
+.table th:first-child{
+
+    border-top-left-radius:14px;
+}
+
+.table th:last-child{
+
+    border-top-right-radius:14px;
+}
+
+/* BODY */
+
+.table td{
+
+    padding:16px 18px;
+
+    vertical-align:middle;
+
+    white-space:nowrap;
+
+    border-bottom:1px solid #f1f5f9;
+}
+
+.table tbody tr{
+
+    transition:.3s ease;
+}
+
+.table tbody tr:hover{
+
+    background:#f8fafc;
+
+    transform:scale(1.002);
+}
+
+/* EMPLOYEE NAME */
+
+.employee-name{
+
+    font-weight:600;
+
+    color:#0f172a;
+}
+
+/* STATUS BADGE */
+
+.badge{
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+.bg-success{
+
+    background:#dcfce7 !important;
+
+    color:#15803d !important;
+}
+
+.bg-danger{
+
+    background:#fee2e2 !important;
+
+    color:#b91c1c !important;
+}
+
+/* ACTION BUTTON */
+
+.btn-info{
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:8px 16px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color:white;
+
+    transition:.3s;
+}
+
+.btn-info:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(37,99,235,.25);
+}
+
+/* LOADING */
+
+.loading-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:200px;
+}
+
+/* EMPTY STATE */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#64748b;
+}
+
+/* SCROLLBAR */
+
+.table-responsive::-webkit-scrollbar{
+
+    height:8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+}
+
+.table-responsive::-webkit-scrollbar-track{
+
+    background:#f1f5f9;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .table{
+
+        min-width:850px;
+    }
+
+    .table th,
+    .table td{
+
+        padding:12px 14px;
+    }
+
+    .btn-info{
+
+        padding:7px 12px;
+
+        font-size:12px;
+    }
+}
