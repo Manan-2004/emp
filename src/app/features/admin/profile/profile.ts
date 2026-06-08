@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MessagesServices } from '../../../core/messages/messages-services';
 import { currentUser } from '../../../core/state/auth.state';
@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 
 export class Profile {
   user = currentUser;
+  loading = signal(false);
   private fb = inject(FormBuilder)
   private userService = inject(UserService)
   private messageService = inject(MessagesServices)
@@ -23,6 +24,13 @@ export class Profile {
 
   showEditForm = false;
   showPasswordForm = false;
+
+  ngOnInit() {
+    this.loading.set(true);
+    setTimeout(() => {
+      this.loading.set(false);
+    }, 500)
+  }
 
   profileForm = this.fb.group({
     name: [

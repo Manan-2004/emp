@@ -6,46 +6,117 @@ import Swal from 'sweetalert2';
 })
 export class MessagesServices {
 
-  success(message: string, title: string = 'Success') {
-    Swal.fire({
+  private toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+
+    didOpen: (toast) => {
+
+      toast.addEventListener(
+        'mouseenter',
+        Swal.stopTimer
+      );
+
+      toast.addEventListener(
+        'mouseleave',
+        Swal.resumeTimer
+      );
+
+    }
+  });
+
+  success(
+    message: string,
+    title: string = 'Success'
+  ) {
+    this.toast.fire({
       icon: 'success',
-      title,
-      text: message,
-      timer: 2000,
-      showConfirmButton: false
-    });
-  }
-
-  error(message: string, title: string = 'Error') {
-    Swal.fire({
-      icon: 'error',
-      title,
-      text: message,
-      timer: 3000,
-      showConfirmButton: true
-    });
-  }
-
-  warning(message: string, title: string = 'Warning') {
-    Swal.fire({
-      icon: 'warning',
-      title,
+      title: `${title}`,
       text: message
     });
   }
 
-  confirmDelete(title:string="Delete User",message: string = 'Are you sure you want to delete this?'
-    ,buttontext:string="Delete"
+  error(
+    message: string,
+    title: string = 'Error'
+  ) {
+    this.toast.fire({
+      icon: 'error',
+      title: `${title}`,
+      text: message,
+      timer: 4000
+    });
+  }
+
+  warning(
+    message: string,
+    title: string = 'Warning'
+  ) {
+    this.toast.fire({
+      icon: 'warning',
+      title: `${title}`,
+      text: message,
+      timer: 3500
+    });
+  }
+
+  info(
+    message: string,
+    title: string = 'Information'
+  ) {
+    this.toast.fire({
+      icon: 'info',
+      title: `${title}`,
+      text: message
+    });
+  }
+
+  confirmDelete(
+    title: string = 'Delete Record',
+    message: string = 'Are you sure you want to delete this item?',
+    buttonText: string = 'Delete'
   ) {
     return Swal.fire({
-      title: title,
+      title,
       text: message,
       icon: 'warning',
+
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: buttontext,
-      cancelButtonText: 'Cancel'
+
+      confirmButtonColor: '#dc3545',
+      cancelButtonColor: '#6c757d',
+
+      confirmButtonText: buttonText,
+      cancelButtonText: 'Cancel',
+
+      reverseButtons: true,
+
+      focusCancel: true
+    });
+  }
+
+  confirmAction(
+    title: string,
+    message: string,
+    buttonText: string = 'Yes'
+  ) {
+    return Swal.fire({
+      title,
+      text: message,
+      icon: 'question',
+
+      showCancelButton: true,
+
+      confirmButtonColor: '#0d6efd',
+      cancelButtonColor: '#6c757d',
+
+      confirmButtonText: buttonText,
+      cancelButtonText: 'Cancel',
+
+      reverseButtons: true
     });
   }
 }

@@ -6,6 +6,7 @@
 /* MAIN CONTENT */
 
 .main-wrapper{
+
     margin-left:280px;
 
     min-height:100vh;
@@ -13,17 +14,18 @@
     display:flex;
     flex-direction:column;
 }
-
 /* PAGE */
 
 .page-container{
+
     flex:1;
 
     padding:24px;
 
+    padding-top:94px;
+
     background:#f1f5f9;
 }
-
 /* MOBILE OVERLAY */
 
 .sidebar-overlay{
@@ -55,7 +57,10 @@
     }
 
     .page-container{
+
         padding:15px;
+
+        padding-top:85px;
     }
 
 }

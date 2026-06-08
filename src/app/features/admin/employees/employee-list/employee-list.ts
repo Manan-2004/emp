@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MessagesServices } from '../../../../core/messages/messages-services';
 import { computed } from '@angular/core';
 import { RecentEmployee } from "../../components/recent-employee/recent-employee";
+import { UserService } from '../../../../core/services/auth/user.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,6 +17,7 @@ export class EmployeeList {
   private employeeService = inject(EmployeeService)
   private router = inject(Router)
   private messageservice = inject(MessagesServices)
+  private userService = inject(UserService);
 
   currentPage = signal(1);
   pageSize = 5;
@@ -53,10 +55,10 @@ export class EmployeeList {
   nextPage() {
     this.loading.set(true)
     if (this.currentPage() < this.totalPages()) {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.loading.set(false)
         this.currentPage.update(page => page + 1);
-      },500)
+      }, 500)
     }
   }
 
@@ -172,24 +174,40 @@ export class EmployeeList {
   }
 
   deleteEmployee(id: string) {
-    this.messageservice.confirmDelete("This employee will be permanently deleted")
-      .then(res => {
+    this.messageservice
+      .confirmDelete(
+        'This employee and linked user account will be permanently deleted'
+      ).then(res => {
         if (res.isConfirmed) {
+          // Employee first get
+          const employee = this.employees().find(emp => emp.id === id);
+
           this.employeeService.deleteEmployee(id).subscribe({
             next: () => {
+              if (employee?.accountCreated) {
+                this.userService.getUsers().subscribe({
+                  next: (users) => {
+                    const user = users.find(u => u.email === employee.email);
+                    if (user) {
+                      this.userService.deleteUser(user.id.toString()).subscribe();
+                    }
+                  }
+                })
+              }
               this.messageservice.success('Employee deleted successfully');
-              this.loadEmployees();
+              this.loadEmployees()
             },
-            error: () => {
+            error: (err) => {
+              console.log(err)
               this.messageservice.error('Failed to delete employee');
             }
           })
         }
       })
   }
-  
-  createAccount(id:string){
-      this.router.navigate([`/admin/employees/create-account/${id}`])
+
+  createAccount(id: string) {
+    this.router.navigate([`/admin/employees/create-account/${id}`])
   }
 
 }

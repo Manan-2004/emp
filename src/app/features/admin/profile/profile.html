@@ -1,3 +1,15 @@
+@if(loading()){
+
+<div class="loading-wrapper">
+
+    <div class="spinner-border text-primary"></div>
+    <br>
+    <p>Loading...</p>
+
+</div>
+
+}
+@else {
 <div class="profile-container">
 
     <div class="profile-card">
@@ -153,14 +165,38 @@
                 <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
 
                     <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Current Password"
-                            formControlName="currentPassword">
+
+                        <label class="form-label">
+                            Current Password
+                        </label>
+
+                        <input type="password" class="form-control" formControlName="currentPassword"
+                            [class.is-invalid]="
+        passwordForm.get('currentPassword')?.touched &&
+        passwordForm.get('currentPassword')?.invalid"  placeholder="Current Password">
+
+                        @if(passwordForm.get('currentPassword')?.touched &&
+                        passwordForm.get('currentPassword')?.errors?.['required']){
+
+                        <div class="invalid-feedback d-block">
+
+                            Current password is required
+
+                        </div>
+
+                        }
+
                     </div>
 
                     <div class="mb-3">
+                        
+                        <label class="form-label">
+                            New Password
+                        </label>
+
                         <input type="password" class="form-control" placeholder="New Password"
                             formControlName="newPassword">
-
+                        
                         @if(passwordForm.get('newPassword')?.touched &&
                         passwordForm.get('newPassword')?.errors?.['required']){
                         <small class="text-danger">
@@ -185,8 +221,29 @@
                     </div>
 
                     <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Confirm Password"
-                            formControlName="confirmPassword">
+
+                        <label class="form-label">
+
+                            Confirm Password
+
+                        </label>
+
+                        <input type="password" class="form-control" formControlName="confirmPassword"
+                            [class.is-invalid]="
+        passwordForm.get('confirmPassword')?.touched &&
+        passwordForm.get('confirmPassword')?.invalid"  placeholder="Confirm Password">
+
+                        @if(passwordForm.get('confirmPassword')?.touched &&
+                        passwordForm.get('confirmPassword')?.errors?.['required']){
+
+                        <div class="invalid-feedback d-block">
+
+                            Confirm password is required
+
+                        </div>
+
+                        }
+
                     </div>
 
                     <button type="submit" class="password-save-btn" [disabled]="passwordForm.invalid">
@@ -201,3 +258,4 @@
     </div>
 
 </div>
+}

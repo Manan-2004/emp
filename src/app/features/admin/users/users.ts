@@ -38,19 +38,18 @@ export class Users {
       .subscribe({
 
         next: (res) => {
+          setTimeout(() => {
+            this.users.set(res);
 
-          this.users.set(res);
+            this.filteredUsers.set(res);
 
-          this.filteredUsers.set(res);
-
-          this.loading.set(false);
-
+            this.loading.set(false);
+          }, 500)
         },
 
-        error: () => {
-
+        error: (err) => {
           this.loading.set(false);
-
+          console.log(err)
         }
 
       });
@@ -183,43 +182,43 @@ export class Users {
   }
 
 
-resetPassword(user: User) {
+  resetPassword(user: User) {
 
-  this.messageService.confirmDelete(
-    'Reset Password?',
-    `Are you sure you want to reset password for ${user.username}?`,
-    "Reset"
-  )
-  .then(res => {
+    this.messageService.confirmDelete(
+      'Reset Password?',
+      `Are you sure you want to reset password for ${user.username}?`,
+      "Reset"
+    )
+      .then(res => {
 
-    if(res.isConfirmed){
+        if (res.isConfirmed) {
 
-      const updatedUser = {
-        ...user,
-        password: '123456'
-      };
+          const updatedUser = {
+            ...user,
+            password: '123456'
+          };
 
-      this.userService
-      .updateUser(
-        user.id.toString(),
-        updatedUser
-      )
-      .subscribe({
+          this.userService
+            .updateUser(
+              user.id.toString(),
+              updatedUser
+            )
+            .subscribe({
 
-        next:()=>{
+              next: () => {
 
-          this.messageService.success(
-            `Password reset successfully.
+                this.messageService.success(
+                  `Password reset successfully.
              New Password: 123456`
-          );
+                );
+
+              }
+
+            });
 
         }
 
       });
-
-    }
-
-  });
-}
+  }
 
 }

@@ -19,6 +19,18 @@
 
     </div>
 
+    @if(loading()){
+
+    <div class="loading-wrapper">
+
+        <div class="spinner-border text-primary"></div>
+
+        <p>Loading Users...</p>
+
+    </div>
+
+    }
+    @else{
     <!-- Filters -->
 
     <div class="filter-card">
@@ -29,17 +41,12 @@
 
                 <i class="bi bi-search"></i>
 
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search by username or name"
+                <input type="text" class="form-control" placeholder="Search by username or name"
                     (input)="onSearch($event)">
 
             </div>
 
-            <select
-                class="form-select"
-                (change)="onRoleChange($event)">
+            <select class="form-select" (change)="onRoleChange($event)">
 
                 <option value="">
                     All Roles
@@ -62,20 +69,6 @@
     <!-- Table Card -->
 
     <div class="table-card">
-
-        @if(loading()){
-
-        <div class="loading-wrapper">
-
-            <div class="spinner-border text-primary"></div>
-
-            <p>Loading Users...</p>
-
-        </div>
-
-        }
-
-        @else {
 
         <div class="table-responsive">
 
@@ -161,9 +154,7 @@
 
                             <div class="action-buttons">
 
-                                <button
-                                    class="reset-btn"
-                                    (click)="resetPassword(user)">
+                                <button class="reset-btn" (click)="resetPassword(user)">
 
                                     <i class="bi bi-key-fill"></i>
 
@@ -173,9 +164,7 @@
 
                                 @if(user.username !== 'admin'){
 
-                                <button
-                                    class="delete-btn"
-                                    (click)="deleteUser(user)">
+                                <button class="delete-btn" (click)="deleteUser(user)">
 
                                     <i class="bi bi-trash-fill"></i>
 
@@ -213,8 +202,9 @@
 
         }
 
-        }
+
 
     </div>
 
+    }
 </div>

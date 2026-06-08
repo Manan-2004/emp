@@ -1,3 +1,21 @@
+.loading-wrapper{
+    min-height:70vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+}
+
+.loading-wrapper p{
+    margin:0;
+    font-size:16px;
+    font-weight:600;
+    color:#64748b;
+}
 .profile-container{
     padding:24px;
     display:flex;
